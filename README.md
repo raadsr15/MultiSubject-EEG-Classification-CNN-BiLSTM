@@ -1,11 +1,15 @@
 # EEG Subject Identification using CNN–Transformer Models
 
 ## 📌 Project Overview
-Electroencephalography (EEG) records brain activity as multi-channel time-series signals with high temporal resolution. Due to subject-specific neurophysiological patterns, EEG signals can be used as a biometric identifier for subject recognition.
+This project explores large-scale EEG-based subject identification using deep learning, leveraging the PhysioNet EEG Motor Movement/Imagery dataset containing recordings from 109 subjects. EEG signals are inherently high-dimensional, noisy, and highly variable across individuals, making subject-level classification a challenging yet meaningful problem for neuroscience, biometric systems, and Brain–Computer Interface (BCI) research.
 
-This project focuses on EEG-based subject identification using deep learning. Raw EEG recordings stored in EDF (European Data Format) files are processed, segmented into fixed-length windows, and used to train a CNN + Transformer hybrid model. Convolutional layers learn spatial–temporal representations, while the Transformer captures long-range temporal dependencies.
+The dataset consists of 64-channel EEG recordings stored in EDF+ format, captured during motor execution and motor imagery tasks under a standardized experimental protocol. Each recording is preprocessed using bandpass filtering, fixed-length epoching, and temporal resampling to produce uniform EEG segments of shape (channels × time). These segments preserve both spatial electrode relationships and temporal neural dynamics, forming the foundation for deep neural modeling.
 
-The objective is to classify which subject an EEG segment belongs to using multichannel EEG data.
+To effectively capture multi-scale EEG patterns, this work implements a CNN + Bidirectional RNN (BiLSTM) architecture. The convolutional layers learn local temporal features and channel-wise representations, while stacked bidirectional LSTM layers model long-range temporal dependencies across EEG sequences. This hybrid design enables the network to extract subject-specific neural signatures that remain stable across trials and sessions.
+
+The model is trained end-to-end using cross-entropy loss and evaluated on a held-out test set using accuracy, precision, recall, and F1-score. Additional analyses include per-subject accuracy breakdowns, confusion matrix visualizations, and learning curve inspection to assess generalization and class imbalance effects. The results demonstrate that deep spatio-temporal modeling can successfully differentiate individuals based solely on EEG activity, even in a high-class (109-subject) setting.
+
+Overall, this project highlights the feasibility of EEG-based biometric identification using deep learning and provides a scalable framework for future research in subject recognition, personalized BCI systems, and neuroadaptive technologies.
 
 ---
 
