@@ -319,3 +319,27 @@ This behavior indicates strong generalization to unseen EEG segments.
 ### ✅ Overall Results Summary
 
 The experimental results demonstrate that the proposed **CNN + Transformer** model effectively captures subject-specific EEG patterns in a challenging **109-class identification problem**. High overall accuracy, consistent subject-wise performance, strong confusion matrix structure, and stable training dynamics collectively validate the robustness of the proposed approach for EEG-based biometric identification and neurosecurity applications.
+
+
+##  Installation
+
+To get started with this project, follow the steps below:
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/raadsr15/MultiSubject-EEG-Classification-CNN-BiLSTM.git
+cd MultiSubject-EEG-Classification-CNN-BiLSTM
+```
+
+2. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Train the model and evaluate model performance
+   
+```bash
+jupyter notebook MultiSubject-EEG-Classification-CNN-BiLSTM.ipynb
+```
