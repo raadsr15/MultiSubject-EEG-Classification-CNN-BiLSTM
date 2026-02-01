@@ -208,33 +208,111 @@ This project uses a structured training pipeline for EEG-based subject classific
 ---
 
 
-## 📊 Results & Evaluation
+## 📊 Results
 
-This section presents a comprehensive evaluation of the proposed **EEG-based subject identification** framework using a **CNN + Transformer** architecture. The model is assessed on a multi-subject EEG dataset to measure both overall classification performance and subject-wise reliability.
+This section presents a comprehensive evaluation of the proposed **CNN + Transformer** architecture for **EEG-based subject identification**. The model is evaluated on a **109-subject** classification task using standard performance metrics, confusion matrix analysis, subject-wise accuracy assessment, and training–testing convergence behavior.
 
 ---
 
-### 🎯 Task Overview
+### 📈 Model Performance Metrics
+
+The final trained model achieves **high and well-balanced performance** across all evaluation metrics, demonstrating strong generalization capability for large-scale subject identification from EEG segments.
 
 - **Task:** Subject Identification from EEG Segments  
-- **Model Architecture:** Convolutional Neural Network (CNN) + Transformer  
+- **Architecture:** CNN + Transformer  
 - **Number of Subjects:** 109  
 
-The CNN is responsible for extracting discriminative spatial features from EEG segments, while the Transformer models long-range temporal dependencies and inter-channel relationships, enabling robust subject-level representation learning.
-
----
-
-### 📈 Overall Classification Performance
-
-The model achieves **high and well-balanced performance** across all standard evaluation metrics, indicating strong generalization and consistency.
-
+**Final Evaluation Metrics:**
 - **Accuracy:** 0.9825  
 - **Precision:** 0.9830  
 - **Recall:** 0.9825  
 - **F1-score:** 0.9825  
 
-The close alignment between precision, recall, and F1-score suggests that the classifier maintains an effective balance between false positives and false negatives across all subjects.
+The close agreement between precision, recall, and F1-score indicates that the model maintains a robust balance between false positives and false negatives, even under a high-class-count setting.
 
-**📌 Figure Slot:**  
-```text
-[Insert Figure: Final model performance comparison (Accuracy, Precision, Recall, F1-score)]
+**Figure 1:** Final model performance metrics (Accuracy, Precision, Recall, F1-score)  
+![Final Model Performance Metrics](FIGURE_1_PLACEHOLDER)
+
+---
+
+### 🧩 Confusion Matrix Analysis
+
+The confusion matrix reveals strong diagonal dominance, indicating that EEG segments are correctly classified for the majority of subjects. Misclassifications are sparse and primarily limited to a small subset of subjects with overlapping EEG characteristics.
+
+**Confusion Matrix Statistics:**
+- **Total classifications:** 13,961  
+- **Total correct classifications:** 13,717  
+- **Mean accuracy per class:** 0.9825  
+- **Highest individual class accuracy:** 1.0000  
+- **Lowest individual class accuracy:** 0.9040  
+
+These results confirm that the model performs consistently across subjects, with no severe class-level degradation.
+
+**Figure 2:** Full confusion matrix for all 109 subjects  
+![Full Confusion Matrix](FIGURE_2_PLACEHOLDER)
+
+**Figure 3:** Zoomed-in confusion matrix for selected subjects  
+![Zoomed Confusion Matrix](FIGURE_3_PLACEHOLDER)
+
+---
+
+### 👥 Subject-wise Accuracy Analysis
+
+To further analyze class-level behavior, subject-wise classification accuracy was computed from the confusion matrix diagonal. The results show that most subjects achieve near-perfect identification accuracy.
+
+- **Mean subject-wise accuracy:** 0.9825  
+- **Accuracy range across subjects:** 0.9040 – 1.0000  
+
+Only a small number of subjects exhibit slightly reduced accuracy, likely due to higher intra-subject EEG variability or inter-subject similarity.
+
+**Figure 4:** Accuracy per subject across all 109 subjects  
+![Accuracy per Subject](FIGURE_4_PLACEHOLDER)
+
+---
+
+### 📊 Samples per Subject Distribution
+
+The number of EEG samples per subject was analyzed to ensure that classification performance is not biased by data imbalance.
+
+- Sample counts are reasonably distributed across subjects  
+- Mean sample count aligns with stable subject-wise performance  
+
+This indicates that the observed classification accuracy is not driven by over-representation of specific subjects.
+
+**Figure 5:** Number of EEG samples per subject  
+![Samples per Subject](FIGURE_5_PLACEHOLDER)
+
+---
+
+### 📉 Training and Test Loss Analysis
+
+The training and test loss curves demonstrate **stable convergence behavior** across epochs.
+
+- Training loss decreases steadily  
+- Test loss closely follows training loss  
+- No significant divergence is observed  
+
+This confirms that the model effectively learns discriminative EEG features without overfitting.
+
+**Figure 6:** Training vs. test loss across epochs  
+![Training vs Test Loss](FIGURE_6_PLACEHOLDER)
+
+---
+
+### 📈 Training and Test Accuracy Analysis
+
+Accuracy trends further validate the stability of the training process.
+
+- Training and test accuracy curves increase consistently  
+- Minimal performance gap between training and test accuracy  
+
+This behavior indicates strong generalization to unseen EEG segments.
+
+**Figure 7:** Training vs. test accuracy across epochs  
+![Training vs Test Accuracy](FIGURE_7_PLACEHOLDER)
+
+---
+
+### ✅ Overall Results Summary
+
+The experimental results demonstrate that the proposed **CNN + Transformer** model effectively captures subject-specific EEG patterns in a challenging **109-class identification problem**. High overall accuracy, consistent subject-wise performance, strong confusion matrix structure, and stable training dynamics collectively validate the robustness of the proposed approach for EEG-based biometric identification and neurosecurity applications.
