@@ -13,30 +13,68 @@ Overall, this project highlights the feasibility of EEG-based biometric identifi
 
 ---
 
-## 📂 EEG Data Format (EDF Background)
+## 📊 About the Dataset
 
-EEG recordings are provided in EDF (European Data Format), a standard format for biomedical time-series data.
+### 🔎 Context
+This dataset was created by the developers of the **BCI2000 instrumentation system** and is one of the most widely used benchmark datasets in **Brain–Computer Interface (BCI)** research. It contains EEG recordings from **109 subjects** performing motor execution and motor imagery tasks.
 
-Each EDF file contains:
+The original dataset is hosted on **PhysioNet**. This version is provided on **Kaggle** to enable easy experimentation, reproducibility, and deep learning workflows.
 
-### 🔹 Header Information
-- Subject identifier
-- Recording metadata
-- Number of EEG channels (e.g., 64 electrodes)
-- Sampling frequency (Hz)
-- Recording duration
-- Channel names (Fp1, Fp2, C3, C4, etc.)
-
-### 🔹 Signal Data
-- Continuous EEG voltage values (in microvolts)
-- Synchronized multi-channel time-series signals
-- Sampled at a fixed frequency (e.g., 128 Hz / 160 Hz)
-
-### 🔹 Annotations (if available)
-- Event markers or task labels
-- Used to guide signal segmentation
+🔗 **Dataset Link (Kaggle):**  
+https://www.kaggle.com/datasets/gamalasran/physionet-eeg-motor-movement-imagery/data
 
 ---
+
+### 📦 Dataset Summary
+- **Subjects:** 109 healthy volunteers  
+- **EEG Channels:** 64 channels (International 10–10 system)  
+- **Sampling Rate:** 160 Hz  
+- **File Format:** EDF+ (European Data Format Plus)  
+- **Signal Type:** Continuous multichannel EEG time-series  
+
+---
+
+### 🧠 EEG Channel Configuration
+- 64-channel EEG montage
+- Electrodes placed according to the **International 10–10 system**
+- Signals recorded as voltage values (µV) over time
+
+---
+
+### 🧪 Experimental Protocol (Runs)
+Each subject performed **14 experimental runs**, where each run corresponds to a specific task. Correct interpretation of the data requires mapping the **run number** to the task type.
+
+| Run # | Task Description |
+|-----|------------------|
+| 1 | Baseline (Eyes Open) |
+| 2 | Baseline (Eyes Closed) |
+| 3, 7, 11 | Motor Execution: Left vs Right Fist |
+| 4, 8, 12 | Motor Imagery: Left vs Right Fist |
+| 5, 9, 13 | Motor Execution: Both Fists vs Both Feet |
+| 6, 10, 14 | Motor Imagery: Both Fists vs Both Feet |
+
+---
+
+### 🏷️ Understanding Annotations (Events)
+EDF+ files include **event annotations** indicating when a task begins.
+
+- **T0** → Rest / Baseline  
+- **T1 & T2** → Task-specific actions (meaning depends on run type)
+
+#### Event Code Interpretation
+| Run Type | T1 Meaning | T2 Meaning |
+|--------|-----------|-----------|
+| 3, 7, 11 | Motion of Left Fist | Motion of Right Fist |
+| 4, 8, 12 | Imagine Left Fist | Imagine Right Fist |
+| 5, 9, 13 | Motion of Both Fists | Motion of Both Feet |
+| 6, 10, 14 | Imagine Both Fists | Imagine Both Feet |
+
+These annotations are used to segment continuous EEG signals into task-specific epochs.
+
+---
+
+
+
 
 ## 🔄 Data Preprocessing Pipeline
 
