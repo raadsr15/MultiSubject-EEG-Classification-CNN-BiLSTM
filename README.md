@@ -111,31 +111,62 @@ These annotations are used to segment continuous EEG signals into task-specific 
 
 ---
 
-## 🧠 Dataset Description
-- Multichannel EEG time-series signals
-- 64 electrodes per sample
-- Fixed-length temporal windows
-- Labels correspond to subject identities
-- Multi-class classification problem with many subjects
 
----
 
 ## 🏗️ Model Architecture
 
-### 🔹 CNN + Transformer Hybrid Model
+### 🔹 CNN + BiLSTM EEG Classification Network
 
-- **Convolutional Neural Network (CNN)**
-  - Extracts local spatial and temporal features
-  - Learns inter-channel and short-term temporal patterns
+This model is a **CNN–RNN hybrid architecture** designed for large-scale EEG subject classification. It combines convolutional feature extraction with bidirectional temporal modeling to capture both local EEG patterns and long-range dependencies.
 
-- **Transformer Encoder**
-  - Uses self-attention to model long-range temporal dependencies
-  - Captures global EEG dynamics within each segment
+---
 
-- **Fully Connected Layers**
-  - Map learned representations to subject class probabilities
+### 🔹 Input Representation
 
-This hybrid architecture combines local feature extraction with global temporal modeling, making it well-suited for EEG-based identification tasks.
+- EEG segments are formatted as **(batch_size, channels, time_steps)**
+- Channels correspond to EEG electrodes; time_steps represent temporal samples.
+
+---
+
+### 🔹 Convolutional Feature Extractor (CNN)
+
+The CNN backbone consists of **four stacked 1D convolutional blocks**, each including:
+- 1D Convolution (kernel size = 3, padding = 1)
+- Batch Normalization
+- ReLU activation
+- Max Pooling (stride = 2)
+
+| Block | Output Channels |
+|------|-----------------|
+| 1 | 64 |
+| 2 | 128 |
+| 3 | 256 |
+| 4 | 512 |
+
+These layers learn hierarchical temporal features while progressively reducing temporal resolution.  
+A **Dropout layer (p = 0.5)** follows the CNN stack for regularization.
+
+---
+
+### 🔹 Temporal Modeling with BiLSTM
+
+CNN features are reshaped to **(batch_size, reduced_time_steps, 512)** and passed through two stacked **Bidirectional LSTM layers**:
+
+- BiLSTM 1: hidden size 256  
+- BiLSTM 2: hidden size 128  
+
+Bidirectional recurrence captures both past and future context in EEG signals.  
+**Dropout (p = 0.3)** is applied between LSTM layers.
+
+---
+
+### 🔹 Classification Head
+
+The final forward and backward LSTM states are concatenated and fed into fully connected layers:
+
+- 256 → 512 → 256 → *num_classes*
+
+The output layer produces logits for **109 subject classes**, optimized using cross-entropy loss.
 
 ---
 
