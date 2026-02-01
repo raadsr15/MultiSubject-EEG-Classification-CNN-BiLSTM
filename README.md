@@ -170,29 +170,71 @@ The output layer produces logits for **109 subject classes**, optimized using cr
 
 ---
 
-## ⚙️ Training Setup
-- Loss Function: Cross-Entropy Loss
-- Optimizer: Adam / AdamW
-- Learning Rate Scheduling: ReduceLROnPlateau
-- Mini-batch training
-- Gradient clipping for stability
-- Model checkpointing based on validation accuracy
+## 🧪 Training Setup
+
+This project uses a structured training pipeline for EEG-based subject classification.
 
 ---
 
-## 📈 Evaluation Metrics
-- Overall classification accuracy
-- Per-subject accuracy
-- Confusion matrix analysis
-- Training and validation loss curves
-- Training and validation accuracy curves
+### 🔹 Data Preparation
+- **Input:** EDF+ EEG files (64 channels)
+- **Preprocessing:**
+  - Bandpass filter: **1–40 Hz**
+  - Fixed-length epoching: **2 seconds**
+  - Resampled to **256 time points**
+- **Final shape:** `(epochs, channels, 256)`
 
 ---
 
-## 📊 Confusion Matrix Analysis
-- Full confusion matrix across all subjects
-- Per-class accuracy distribution
-- Sample distribution per subject
-- High-resolution visualizations saved for analysis
+### 🔹 Labels & Splitting
+- Each subject mapped to a unique class ID (**109 classes**)
+- Custom random split:
+  - **70% training**
+  - **30% testing**
 
 ---
+
+### 🔹 Normalization
+- Channel-wise **z-score normalization**
+- Prevents scale imbalance across electrodes
+
+---
+
+### 🔹 Training Input
+- Converted to **PyTorch tensors**
+- Input shape: `(batch_size, channels, time_steps)`
+- Loaded using **DataLoader** with shuffling and pinned memory
+
+---
+
+
+## 📊 Results & Evaluation
+
+This section presents a comprehensive evaluation of the proposed **EEG-based subject identification** framework using a **CNN + Transformer** architecture. The model is assessed on a multi-subject EEG dataset to measure both overall classification performance and subject-wise reliability.
+
+---
+
+### 🎯 Task Overview
+
+- **Task:** Subject Identification from EEG Segments  
+- **Model Architecture:** Convolutional Neural Network (CNN) + Transformer  
+- **Number of Subjects:** 109  
+
+The CNN is responsible for extracting discriminative spatial features from EEG segments, while the Transformer models long-range temporal dependencies and inter-channel relationships, enabling robust subject-level representation learning.
+
+---
+
+### 📈 Overall Classification Performance
+
+The model achieves **high and well-balanced performance** across all standard evaluation metrics, indicating strong generalization and consistency.
+
+- **Accuracy:** 0.9825  
+- **Precision:** 0.9830  
+- **Recall:** 0.9825  
+- **F1-score:** 0.9825  
+
+The close alignment between precision, recall, and F1-score suggests that the classifier maintains an effective balance between false positives and false negatives across all subjects.
+
+**📌 Figure Slot:**  
+```text
+[Insert Figure: Final model performance comparison (Accuracy, Precision, Recall, F1-score)]
