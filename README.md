@@ -2,7 +2,7 @@
 ![lucid-origin_High-detail_scientific_background_showing_professional_EEG_recording_equipment_i-0](https://github.com/user-attachments/assets/915ae045-8165-45ba-b1a3-5ff8c61bfc82)
 
 
-# EEG Subject Identification using CNN–Transformer Models
+# EEG-Based Subject Identification Using CNN and BiLSTM Networks
 
 
 This project explores large-scale EEG-based subject identification using deep learning, leveraging the PhysioNet EEG Motor Movement/Imagery dataset containing recordings from 109 subjects. EEG signals are inherently high-dimensional, noisy, and highly variable across individuals, making subject-level classification a challenging yet meaningful problem for neuroscience, biometric systems, and Brain–Computer Interface (BCI) research.
