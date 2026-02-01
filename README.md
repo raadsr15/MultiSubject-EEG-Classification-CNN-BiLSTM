@@ -230,8 +230,8 @@ The final trained model achieves **high and well-balanced performance** across a
 
 The close agreement between precision, recall, and F1-score indicates that the model maintains a robust balance between false positives and false negatives, even under a high-class-count setting.
 
-**Figure 1:** Final model performance metrics (Accuracy, Precision, Recall, F1-score)  
-![Final Model Performance Metrics](FIGURE_1_PLACEHOLDER)
+<img width="690" height="490" alt="image" src="https://github.com/user-attachments/assets/b7d6f627-dea5-4a27-ab86-7967b6de42c4" />
+
 
 ---
 
@@ -248,11 +248,13 @@ The confusion matrix reveals strong diagonal dominance, indicating that EEG segm
 
 These results confirm that the model performs consistently across subjects, with no severe class-level degradation.
 
-**Figure 2:** Full confusion matrix for all 109 subjects  
-![Full Confusion Matrix](FIGURE_2_PLACEHOLDER)
+Full confusion matrix for all 109 subjects  
+<img width="1283" height="1189" alt="image" src="https://github.com/user-attachments/assets/627eb02a-b592-4e4c-8401-d8911819be56" />
 
-**Figure 3:** Zoomed-in confusion matrix for selected subjects  
-![Zoomed Confusion Matrix](FIGURE_3_PLACEHOLDER)
+
+Zoomed-in confusion matrix for selected subjects  
+<img width="1104" height="989" alt="image" src="https://github.com/user-attachments/assets/58b16407-7e5b-4479-a1a1-a6d68699c084" />
+
 
 ---
 
@@ -265,8 +267,8 @@ To further analyze class-level behavior, subject-wise classification accuracy wa
 
 Only a small number of subjects exhibit slightly reduced accuracy, likely due to higher intra-subject EEG variability or inter-subject similarity.
 
-**Figure 4:** Accuracy per subject across all 109 subjects  
-![Accuracy per Subject](FIGURE_4_PLACEHOLDER)
+<img width="1389" height="590" alt="image" src="https://github.com/user-attachments/assets/709a10c4-a4be-42ce-abb2-27dc74b24a2f" />
+
 
 ---
 
@@ -279,8 +281,8 @@ The number of EEG samples per subject was analyzed to ensure that classification
 
 This indicates that the observed classification accuracy is not driven by over-representation of specific subjects.
 
-**Figure 5:** Number of EEG samples per subject  
-![Samples per Subject](FIGURE_5_PLACEHOLDER)
+<img width="1389" height="590" alt="image" src="https://github.com/user-attachments/assets/e6a1eaef-7ddc-43d9-b6e0-25ebe85c96af" />
+
 
 ---
 
@@ -294,8 +296,8 @@ The training and test loss curves demonstrate **stable convergence behavior** ac
 
 This confirms that the model effectively learns discriminative EEG features without overfitting.
 
-**Figure 6:** Training vs. test loss across epochs  
-![Training vs Test Loss](FIGURE_6_PLACEHOLDER)
+<img width="790" height="490" alt="image" src="https://github.com/user-attachments/assets/1101463b-3679-4003-aa7d-4ef64083c9e4" />
+
 
 ---
 
@@ -308,8 +310,9 @@ Accuracy trends further validate the stability of the training process.
 
 This behavior indicates strong generalization to unseen EEG segments.
 
-**Figure 7:** Training vs. test accuracy across epochs  
-![Training vs Test Accuracy](FIGURE_7_PLACEHOLDER)
+<img width="790" height="490" alt="image" src="https://github.com/user-attachments/assets/363dc263-41b4-44f4-b144-9e260942137a" />
+
+
 
 ---
 
